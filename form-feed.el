@@ -46,7 +46,8 @@
   :group 'faces)
 
 (defface form-feed-line
-  '((t :inherit font-lock-comment-face :strike-through t))
+  '((((type graphic)) :inherit font-lock-comment-face :strike-through t)
+    (((type tty)) :inherit font-lock-comment-face :underline t))
   "Face for form-feed-mode lines."
   :group 'form-feed)
 

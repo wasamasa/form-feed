@@ -43,8 +43,9 @@ known feature of font-lock that allows one to add text properties as
 part of the face definition associated with the page delimiter glyph
 and tells it to remove those on fontification changes to make sure
 disabling works equally well.  This also means that while this package
-is conceptually very simple and non-invasive, it will probably not
-work on non-graphical displays.
+is conceptually very simple and non-invasive, it might not work on
+non-graphical displays.  As a workaround I've made Emacs use
+underlining instead of strike-through on such displays.
 
 The implementation of display lines was inspired by the `magic-buffer
 <https://github.com/sabof/magic-buffer>`_ package and has "cursor
@@ -74,7 +75,8 @@ Alternatives
 
 - `page-break-lines <https://github.com/purcell/page-break-lines>`_ is
   the newest package available using the display table approach and
-  the one I'd recommend if you need support for non-graphical display.
+  the one I'd recommend if this package doesn't work for you in
+  non-graphical Emacs sessions.
 
 - `Overlay Control L <http://www.emacswiki.org/emacs/OverlayControlL>`_
   is what inspired me to take the font-lock route.  However installing
