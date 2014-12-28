@@ -72,10 +72,13 @@
 ;; Definitions
 
 (defun form-feed--kick-cursor (old new)
-  (cond ((and (< old new) (/= (point-max) (point)))
-         (forward-char 1))
-        ((and (> old new) (/= (point-min) (point)))
-         (forward-char -1))))
+  ;; Don't do anything inside lisp code, because lisp code uses point
+  ;; motion too, but needs to see the exact buffer contents.
+  (when (called-interactively-p 'any)
+    (cond ((and (< old new) (/= (point-max) (point)))
+           (forward-char 1))
+          ((and (> old new) (/= (point-min) (point)))
+           (forward-char -1)))))
 
 (defun form-feed--add-font-lock-keywords ()
   "Add buffer-local keywords to display page delimiter lines.
