@@ -4,7 +4,7 @@ form-feed
 About
 -----
 
-form-feed is a minor mode that displays pesky ^L glyphs certain
+form-feed is a minor mode that displays pesky ``^L`` glyphs certain
 developers use to delimit pages in the form of lines spanning the
 entire window width.
 
@@ -66,11 +66,11 @@ Alternatives
 - `formfeed-hline <http://user42.tuxfamily.org/formfeed-hline/index.html>`_
   is probably the oldest package of them all, sports XEmacs
   compatibility and modifies the display table to add a line of dashes
-  after the ^L glyph.
+  after the ``^L`` glyph.
 
 - `Pretty Control L <http://www.emacswiki.org/emacs/PrettyControlL>`_
   is similiarly old and modifies the display table in a mor elaborate
-  way to turn the ^L glyph into something resembling a section.
+  way to turn the ``^L`` glyph into something resembling a section.
 
 - `page-break-lines <https://github.com/purcell/page-break-lines>`_ is
   the newest package available using the display table approach and
