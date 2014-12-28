@@ -39,6 +39,9 @@
 
 ;;; Code:
 
+
+;; Customizations
+
 (defgroup form-feed nil
   "Turn ^L glyphs into horizontal lines."
   ;; NOTE doesn't work if ^L is at the beginning of the buffer
@@ -65,6 +68,9 @@
 (defvar form-feed-font-lock-keywords
   `((,page-delimiter 0 form-feed-font-lock-face t)))
 
+
+;; Definitions
+
 (defun form-feed-kick-cursor (old new)
   (cond ((and (< old new) (/= (point-max) (point)))
          (forward-char 1))
@@ -79,12 +85,21 @@ removal of the keywords via
   (font-lock-add-keywords nil form-feed-font-lock-keywords)
   (set (make-local-variable 'font-lock-extra-managed-props)
        `(display ,(when form-feed-kick-cursor 'point-entered)))
-  (font-lock-fontify-buffer))
+  (if (fboundp 'font-lock-flush)
+      (font-lock-flush)
+    (with-no-warnings (font-lock-fontify-buffer))))
 
 (defun form-feed-remove-font-lock-keywords ()
   "Remove buffer-local keywords displaying page delimiter lines."
   (font-lock-remove-keywords nil form-feed-font-lock-keywords)
-  (font-lock-fontify-buffer))
+  ;; font-lock-fontify-buffer is unsuitable in lisp code when
+  ;; font-lock-flush is available (on later versions)
+  (if (fboundp 'font-lock-flush)
+      (font-lock-flush)
+    (with-no-warnings (font-lock-fontify-buffer))))
+
+
+;; Minor mode definition
 
 ;;;###autoload
 (define-minor-mode form-feed-mode
