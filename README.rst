@@ -16,9 +16,9 @@ Screenshot
 Installation
 ------------
 
-Install manually or via `quelpa <https://github.com/quelpa/quelpa>`_
-with ``M-: (quelpa '(form-feed :fetcher github :repo
-"wasamasa/form-feed"))``.
+Install from `Marmalade <https://marmalade-repo.org/>`_ or `MELPA
+(stable) <http://melpa.org/>`_ with ``M-x package-install RET
+form-feed RET``.
 
 Usage
 -----
