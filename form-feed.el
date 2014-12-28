@@ -103,8 +103,15 @@ removal of the keywords via
 
 ;;;###autoload
 (define-minor-mode form-feed-mode
-  "Toggle form-feed-mode.
-^L glyphs are displayed as horizontal lines."
+  "Display hard newlines as window-wide horizontal lines.
+
+This minor mode displays page delimiters which usually appear as ^L
+glyphs on a single line as horizontal lines spanning the entire
+window.  It is suitable for inclusion into mode hooks and is
+intended to be used that way.  The following snippet would enable
+it for Emacs Lisp files for instance:
+
+    (add-hook 'emacs-lisp-mode-hook 'form-feed-mode)"
   :lighter " ^L"
   (if form-feed-mode
       (form-feed--add-font-lock-keywords)
