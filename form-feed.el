@@ -4,6 +4,7 @@
 
 ;; Author: Vasilij Schneidermann <v.schneidermann@gmail.com>
 ;; URL: https://github.com/wasamasa/form-feed
+;; Package-Requires: ((emacs "24.3"))
 ;; Keywords: faces
 ;; Version: 0.1
 
