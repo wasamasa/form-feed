@@ -56,27 +56,35 @@
   :type 'boolean
   :group 'form-feed)
 
-(defvar form-feed-font-lock-face
+(defvar form-feed--font-lock-face
   ;; NOTE see (info "(elisp) Search-based fontification") and the
-  ;; `(MATCHER . FACESPEC)' section for an explanation of the syntax
+  ;; `(MATCHER . FACESPEC)' section
   `(face form-feed-line display (space . (:width text))
-         ,@(when form-feed-kick-cursor '(point-entered form-feed-kick-cursor))))
+         ,@(when form-feed-kick-cursor '(point-entered form-feed--kick-cursor))))
 
-(defvar form-feed-font-lock-keywords
+(defvar form-feed--font-lock-keywords
+  ;; NOTE see (info "(elisp) Search-based fontification") and the
+  ;; `(MATCHER . SUBEXP-HIGHLIGHTER)' section
   `((,page-delimiter 0 form-feed-font-lock-face t)))
 
-(defun form-feed-kick-cursor (old new)
+
+;; Functions
+
+(defun form-feed--kick-cursor (old new)
+  "Kick cursor going from OLD to NEW upon entering a line.
+This is done to avoid leaving the cursor on the line which would
+lead to incorrect appearance."
   (cond ((and (< old new) (/= (point-max) (point)))
          (forward-char 1))
         ((and (> old new) (/= (point-min) (point)))
          (forward-char -1))))
 
-(defun form-feed-add-font-lock-keywords ()
+(defun form-feed--add-font-lock-keywords ()
   "Add buffer-local keywords to display page delimiter lines.
 Make sure the special properties involved get cleaned up on
 removal of the keywords via
 `form-feed-remove-font-lock-keywords'."
-  (font-lock-add-keywords nil form-feed-font-lock-keywords)
+  (font-lock-add-keywords nil form-feed--font-lock-keywords)
   (set (make-local-variable 'font-lock-extra-managed-props)
        (append `(display ,(when form-feed-kick-cursor 'point-entered))
                font-lock-extra-managed-props))
@@ -84,9 +92,9 @@ removal of the keywords via
       (font-lock-flush)
     (font-lock-fontify-buffer)))
 
-(defun form-feed-remove-font-lock-keywords ()
+(defun form-feed--remove-font-lock-keywords ()
   "Remove buffer-local keywords displaying page delimiter lines."
-  (font-lock-remove-keywords nil form-feed-font-lock-keywords)
+  (font-lock-remove-keywords nil form-feed--font-lock-keywords)
   (if (fboundp 'font-lock-flush)
       (font-lock-flush)
     (font-lock-fontify-buffer)))
@@ -97,8 +105,8 @@ removal of the keywords via
 ^L glyphs are displayed as horizontal lines."
   :lighter " ^L"
   (if form-feed-mode
-      (form-feed-add-font-lock-keywords)
-    (form-feed-remove-font-lock-keywords)))
+      (form-feed--add-font-lock-keywords)
+    (form-feed--remove-font-lock-keywords)))
 
 (provide 'form-feed)
 
