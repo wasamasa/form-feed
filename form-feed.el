@@ -65,9 +65,10 @@
 (defvar form-feed--font-lock-keywords
   ;; NOTE see (info "(elisp) Search-based fontification") and the
   ;; `(MATCHER . SUBEXP-HIGHLIGHTER)' section
-  `((,page-delimiter 0 form-feed-font-lock-face t)))
+  `((,page-delimiter 0 form-feed--font-lock-face t)))
 
 
+
 ;; Functions
 
 (defun form-feed--kick-cursor (old new)
