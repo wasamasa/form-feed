@@ -66,11 +66,10 @@
   `((,page-delimiter 0 form-feed-font-lock-face t)))
 
 (defun form-feed-kick-cursor (old new)
-  (when (called-interactively-p 'any)
-    (cond ((and (< old new) (/= (point-max) (point)))
-           (forward-char 1))
-          ((and (> old new) (/= (point-min) (point)))
-           (forward-char -1)))))
+  (cond ((and (< old new) (/= (point-max) (point)))
+         (forward-char 1))
+        ((and (> old new) (/= (point-min) (point)))
+         (forward-char -1))))
 
 (defun form-feed-add-font-lock-keywords ()
   "Add buffer-local keywords to display page delimiter lines.
