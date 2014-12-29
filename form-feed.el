@@ -78,7 +78,8 @@ removal of the keywords via
 `form-feed-remove-font-lock-keywords'."
   (font-lock-add-keywords nil form-feed-font-lock-keywords)
   (set (make-local-variable 'font-lock-extra-managed-props)
-       `(display ,(when form-feed-kick-cursor 'point-entered)))
+       (append `(display ,(when form-feed-kick-cursor 'point-entered))
+               font-lock-extra-managed-props))
   (font-lock-fontify-buffer))
 
 (defun form-feed-remove-font-lock-keywords ()
