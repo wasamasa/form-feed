@@ -102,12 +102,14 @@ removal of the keywords via
 ;;;###autoload
 (define-minor-mode form-feed-mode
   "Toggle form-feed-mode.
-^L glyphs are displayed as horizontal lines."
+
+This minor mode displays page delimiters which usually appear as ^L
+glyphs on a single line as horizontal lines spanning the entire
+window."
   :lighter " ^L"
   (if form-feed-mode
       (form-feed--add-font-lock-keywords)
     (form-feed--remove-font-lock-keywords)))
 
 (provide 'form-feed)
-
 ;;; form-feed.el ends here
