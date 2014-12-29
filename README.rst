@@ -29,6 +29,10 @@ Enable the minor mode manually with ``M-x form-feed`` or in a hook:
 
     (add-hook 'emacs-lisp-mode-hook 'form-feed-mode)
 
+The lines are clickable, and hide/show following sections of code when
+clicked. When hidden, comments just after the form-feed are shown as a
+header.
+
 Internals
 ---------
 
