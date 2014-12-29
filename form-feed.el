@@ -56,11 +56,17 @@
   :type 'boolean
   :group 'form-feed)
 
+(defcustom form-feed-extra-properties nil
+  "List of additional text properties to add to form feeds."
+  :type '(plist)
+  :group 'form-feed)
+
 (defvar form-feed--font-lock-face
   ;; NOTE see (info "(elisp) Search-based fontification") and the
   ;; `(MATCHER . FACESPEC)' section
   `(face form-feed-line display (space . (:width text))
-         ,@(when form-feed-kick-cursor '(point-entered form-feed--kick-cursor))))
+         ,@(when form-feed-kick-cursor '(point-entered form-feed--kick-cursor))
+         ,@form-feed-extra-properties))
 
 (defvar form-feed--font-lock-keywords
   ;; NOTE see (info "(elisp) Search-based fontification") and the
@@ -87,7 +93,8 @@ removal of the keywords via
 `form-feed-remove-font-lock-keywords'."
   (font-lock-add-keywords nil form-feed--font-lock-keywords)
   (set (make-local-variable 'font-lock-extra-managed-props)
-       (append `(display ,(when form-feed-kick-cursor 'point-entered))
+       (append `(display ,(when form-feed-kick-cursor 'point-entered)
+                         ,@form-feed-extra-properties)
                font-lock-extra-managed-props))
   (if (fboundp 'font-lock-flush)
       (font-lock-flush)
