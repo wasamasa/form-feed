@@ -41,7 +41,6 @@
 
 (defgroup form-feed nil
   "Turn ^L glyphs into horizontal lines."
-  ;; NOTE doesn't work if ^L is at the beginning of the buffer
   :prefix "form-feed-"
   :group 'faces)
 
@@ -53,6 +52,7 @@
 
 (defcustom form-feed-kick-cursor t
   "When t, entering a line moves the cursor away from it."
+  ;; NOTE doesn't work if ^L is at the beginning of the buffer
   :type 'boolean
   :group 'form-feed)
 
