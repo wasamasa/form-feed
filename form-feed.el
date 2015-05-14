@@ -142,7 +142,7 @@ window."
       (form-feed--add-font-lock-keywords)
     (form-feed--remove-font-lock-keywords))
 
-  (when (called-interactively-p)
+  (when (called-interactively-p 'interactive)
     (if (fboundp 'font-lock-flush)
         (font-lock-flush)
       (font-lock-fontify-buffer))))
