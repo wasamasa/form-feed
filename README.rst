@@ -80,5 +80,5 @@ Alternatives
 
 - `Overlay Control L <http://www.emacswiki.org/emacs/OverlayControlL>`_
   is what inspired me to take the font-lock route.  However installing
-  an overlay feels to heavyweight to me, additionally to that it's not
+  an overlay feels too heavyweight to me, additionally to that it's not
   trivial to clean them up afterwards.
