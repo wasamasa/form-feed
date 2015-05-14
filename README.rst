@@ -6,7 +6,9 @@ About
 
 form-feed is a minor mode that displays pesky ``^L`` glyphs certain
 developers use to delimit pages in the form of lines spanning the
-entire window width.
+entire window width.  It is also possible to display a less wide line
+by customizing ``form-line-width`` before loading the package, see its
+docstring for possible options.
 
 Screenshot
 ----------

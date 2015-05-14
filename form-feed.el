@@ -50,6 +50,35 @@
   "Face for form-feed-mode lines."
   :group 'form-feed)
 
+(defcustom form-feed-line-width t
+  "Width of the form feed line.
+It may be one of the following values:
+
+t: Full width.
+
+floating point number: Ratio of full width.  A value of 0.5 would
+use half the width.
+
+positive integer number: Width as measured in columns.  A value
+of 80 would use a 80 characters wide line.
+
+negative integer number: Full width minus specified number of
+columns.  A value of -1 would leave the last column empty."
+  :type '(choice (const :tag "Full width" t)
+                 (float :tag "Ratio")
+                 (integer :tag "Columns"))
+  :group 'form-feed)
+
+(defvar form-feed--line-width
+  (cond
+   ((integerp form-feed-line-width)
+    (if (>= form-feed-line-width 0)
+        form-feed-line-width
+      `(- text ,(abs form-feed-line-width))))
+   ((floatp form-feed-line-width)
+    `(,form-feed-line-width . text))
+   (t 'text)))
+
 (defcustom form-feed-kick-cursor t
   "When t, entering a line moves the cursor away from it."
   ;; NOTE doesn't work if ^L is at the beginning of the buffer
@@ -64,7 +93,7 @@
 (defvar form-feed--font-lock-face
   ;; NOTE see (info "(elisp) Search-based fontification") and the
   ;; `(MATCHER . FACESPEC)' section
-  `(face form-feed-line display (space . (:width text))
+  `(face form-feed-line display (space . (:width ,form-feed--line-width))
          ,@(when form-feed-kick-cursor '(point-entered form-feed--kick-cursor))
          ,@form-feed-extra-properties))
 
