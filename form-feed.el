@@ -81,7 +81,6 @@ columns.  A value of -1 would leave the last column empty."
 
 (defcustom form-feed-kick-cursor t
   "When t, entering a line moves the cursor away from it."
-  ;; NOTE doesn't work if ^L is at the beginning of the buffer
   :type 'boolean
   :group 'form-feed)
 
