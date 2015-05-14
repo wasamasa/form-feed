@@ -95,17 +95,11 @@ removal of the keywords via
   (set (make-local-variable 'font-lock-extra-managed-props)
        (append `(display ,(when form-feed-kick-cursor 'point-entered)
                          ,@form-feed-extra-properties)
-               font-lock-extra-managed-props))
-  (if (fboundp 'font-lock-flush)
-      (font-lock-flush)
-    (font-lock-fontify-buffer)))
+               font-lock-extra-managed-props)))
 
 (defun form-feed--remove-font-lock-keywords ()
   "Remove buffer-local keywords displaying page delimiter lines."
-  (font-lock-remove-keywords nil form-feed--font-lock-keywords)
-  (if (fboundp 'font-lock-flush)
-      (font-lock-flush)
-    (font-lock-fontify-buffer)))
+  (font-lock-remove-keywords nil form-feed--font-lock-keywords))
 
 ;;;###autoload
 (define-minor-mode form-feed-mode
@@ -117,7 +111,12 @@ window."
   :lighter " ^L"
   (if form-feed-mode
       (form-feed--add-font-lock-keywords)
-    (form-feed--remove-font-lock-keywords)))
+    (form-feed--remove-font-lock-keywords))
+
+  (when (called-interactively-p)
+    (if (fboundp 'font-lock-flush)
+        (font-lock-flush)
+      (font-lock-fontify-buffer))))
 
 (provide 'form-feed)
 ;;; form-feed.el ends here
