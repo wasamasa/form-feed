@@ -101,6 +101,12 @@ columns.  A value of -1 would leave the last column empty."
   ;; `(MATCHER . SUBEXP-HIGHLIGHTER)' section
   `((,page-delimiter 0 form-feed--font-lock-face t)))
 
+(defcustom form-feed-lighter " ^L"
+  "Lighter for `form-feed-mode'."
+  :type 'string
+  :group 'form-feed
+  :risky t)
+
 
 
 ;; Functions
@@ -136,7 +142,7 @@ removal of the keywords via
 This minor mode displays page delimiters which usually appear as ^L
 glyphs on a single line as horizontal lines spanning the entire
 window."
-  :lighter " ^L"
+  :lighter form-feed-lighter
   (if form-feed-mode
       (form-feed--add-font-lock-keywords)
     (form-feed--remove-font-lock-keywords))
