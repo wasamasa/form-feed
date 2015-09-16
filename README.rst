@@ -50,10 +50,8 @@ non-graphical displays.  As a workaround I've made Emacs use
 underlining instead of strike-through on such displays.
 
 The implementation of display lines was inspired by the `magic-buffer
-<https://github.com/sabof/magic-buffer>`_ package and has "cursor
-kicking" enabled by default as feature to make the lines intangible.
-It can be disabled by customizing ``form-feed-kick-cursor`` before
-loading the package.
+<https://github.com/sabof/magic-buffer>`_ package, but did eventually
+remove its "cursor kicking" due to a rather puzzling bug.
 
 Contributing
 ------------
