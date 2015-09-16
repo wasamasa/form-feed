@@ -92,7 +92,7 @@ columns.  A value of -1 would leave the last column empty."
 (defvar form-feed--font-lock-face
   ;; NOTE see (info "(elisp) Search-based fontification") and the
   ;; `(MATCHER . FACESPEC)' section
-  `(face form-feed-line display (space . (:width ,form-feed--line-width))
+  `(face form-feed-line display (space :width ,form-feed--line-width)
          ,@(when form-feed-kick-cursor '(point-entered form-feed--kick-cursor))
          ,@form-feed-extra-properties))
 
