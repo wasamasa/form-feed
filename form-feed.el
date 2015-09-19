@@ -117,7 +117,10 @@ removal of the keywords via
 
 (defun form-feed--remove-font-lock-keywords ()
   "Remove buffer-local keywords displaying page delimiter lines."
-  (font-lock-remove-keywords nil form-feed--font-lock-keywords))
+  (font-lock-remove-keywords nil form-feed--font-lock-keywords)
+  (dolist (property (append '(display) form-feed-extra-properties))
+    (setq font-lock-extra-managed-props
+          (delq property font-lock-extra-managed-props))))
 
 ;;;###autoload
 (define-minor-mode form-feed-mode
