@@ -5,7 +5,7 @@
 ;; Author: Vasilij Schneidermann <v.schneidermann@gmail.com>
 ;; URL: https://github.com/wasamasa/form-feed
 ;; Keywords: faces
-;; Version: 0.2.0
+;; Version: 0.2.1
 
 ;; This file is NOT part of GNU Emacs.
 
