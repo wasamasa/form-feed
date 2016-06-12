@@ -70,7 +70,7 @@ Alternatives
   after the ``^L`` glyph.
 
 - `Pretty Control L <http://www.emacswiki.org/emacs/PrettyControlL>`_
-  is similiarly old and modifies the display table in a more elaborate
+  is similarly old and modifies the display table in a more elaborate
   way to turn the ``^L`` glyph into something resembling a section.
 
 - `page-break-lines <https://github.com/purcell/page-break-lines>`_ is
