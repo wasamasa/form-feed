@@ -107,6 +107,12 @@ columns.  A value of -1 would leave the last column empty."
   :group 'form-feed
   :risky t)
 
+(defcustom form-feed-modes
+  '(emacs-lisp-mode lisp-mode scheme-mode compilation-mode outline-mode help-mode)
+  "Modes in which to enable `form-feed-mode'."
+  :type '(repeat symbol)
+  :group 'form-feed)
+
 
 ;;; Functions
 
@@ -143,6 +149,20 @@ window."
     (if (fboundp 'font-lock-flush)
         (font-lock-flush)
       (font-lock-fontify-buffer))))
+
+(defun form-feed--turn-on-if-desired ()
+  "Enable `form-feed-mode' in the current buffer if desired.
+When `major-mode' is listed in `form-feed-modes', then
+`form-feed-mode' will be enabled."
+  (when (and (not (minibufferp))
+             (apply #'derived-mode-p form-feed-modes))
+    (form-feed-mode 1)))
+
+;;;###autoload
+(define-globalized-minor-mode global-form-feed-mode
+  form-feed-mode
+  form-feed--turn-on-if-desired
+  :group 'form-feed)
 
 (provide 'form-feed)
 ;;; form-feed.el ends here
