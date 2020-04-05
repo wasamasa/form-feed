@@ -22,6 +22,9 @@ Install from `Marmalade <https://marmalade-repo.org/>`_ or `MELPA
 (stable) <http://melpa.org/>`_ with ``M-x package-install RET
 form-feed RET``.
 
+``form-feed`` is also available as a recipe in `GNU Guix <https://guix.gnu.org/>`_.
+Install with ``guix install emacs-form-feed``.
+
 Usage
 -----
 
